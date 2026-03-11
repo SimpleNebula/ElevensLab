@@ -82,6 +82,8 @@ public class CardGameGUI extends JFrame implements ActionListener {
 	private int totalWins;
 	/** The number of games played. */
 	private int totalGames;
+	/** Flag to suppress auto-loss on the first initial deal. */
+	private boolean firstDeal = true;
 
 
 	/**
@@ -111,6 +113,8 @@ public class CardGameGUI extends JFrame implements ActionListener {
 		initDisplay();
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		repaint();
+		// After the initial display/repaint, clear the firstDeal flag
+		firstDeal = false;
 	}
 
 	/**
@@ -250,7 +254,7 @@ public class CardGameGUI extends JFrame implements ActionListener {
 								  250, 30);
 		panel.add(totalsMsg);
 
-		if (!board.anotherPlayIsPossible()) {
+		if (!board.anotherPlayIsPossible() && !firstDeal) {
 			signalLoss();
 		}
 

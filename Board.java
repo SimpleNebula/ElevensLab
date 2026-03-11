@@ -178,8 +178,16 @@ public abstract class Board {
 	 * Deal cards to this board to start the game.
 	 */
 	private void dealMyCards() {
-		for (int k = 0; k < cards.length; k++) {
-			cards[k] = deck.deal();
-		}
+		// Shuffle and deal until the initial board has a legal play
+		// (or until a reasonable attempt limit is reached).
+		int attempts = 0;
+		final int MAX_ATTEMPTS = 100;
+		do {
+			deck.shuffle();
+			for (int k = 0; k < cards.length; k++) {
+				cards[k] = deck.deal();
+			}
+			attempts++;
+		} while (!anotherPlayIsPossible() && attempts < MAX_ATTEMPTS);
 	}
 }
