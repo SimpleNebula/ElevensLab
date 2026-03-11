@@ -296,7 +296,6 @@ public class CardGameGUI extends JFrame implements ActionListener {
 	 * or the "Restart" button).
 	 * @param e the button click action event
 	 */
-	@SuppressWarnings("deprecation")
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(replaceButton)) {
 			// Gather all the selected cards.

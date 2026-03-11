@@ -62,6 +62,8 @@ public class Deck {
 	 * and reset the size to represent the entire deck.
 	 */
 	public void shuffle() {
+		// Reset size to include all cards before shuffling
+		size = cards.size();
 		for (int k = cards.size() - 1; k > 0; k--) {
         // Pick a random index from 0 to k
         int r = (int) (Math.random() * (k + 1));
